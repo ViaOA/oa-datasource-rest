@@ -347,7 +347,7 @@ public class OADataSourceRestImpl implements OADataSourceRestInterface {
 
 			final OAGraphInternal og = (OAGraphInternal) OARuntime.graph(whereObjectClass);
 			
-			objWhere = (OAObject) og.objectsInternal().callObjectCacheGet(whereObjectClass, ok);
+			objWhere = (OAObject) og.internal().objects().cache().get(whereObjectClass, ok);
 			if (objWhere == null) {
 				OADataSource dsx = OARuntime.datasource().get(whereObjectClass);
 				if (dsx != null) {

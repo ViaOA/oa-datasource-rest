@@ -218,7 +218,7 @@ public class OADataSourceRestClient extends OADataSource {
 
 		if (filter != null) {
 			final OAGraphInternal og = (OAGraphInternal) OARuntime.graph(clazz);
-			if (og.objectsInternal().callObjectCacheGetSelectAllHub(clazz) != null) {
+			if (og.internal().objects().cache().getSelectAllHub(clazz) != null) {
 				return true;
 			}
 		}
@@ -425,7 +425,7 @@ public class OADataSourceRestClient extends OADataSource {
 
 		if (filter != null) {
 			final OAGraphInternal og = (OAGraphInternal) OARuntime.graph(selectClass);
-			if (og.objectsInternal().callObjectCacheGetSelectAllHub(selectClass) != null) {
+			if (og.internal().objects().cache().getSelectAllHub(selectClass) != null) {
 				ObjectCacheIterator it = new ObjectCacheIterator(selectClass, filter);
 				it.setMax(max);
 				return it;
@@ -466,7 +466,7 @@ public class OADataSourceRestClient extends OADataSource {
 			int max, OAFilter filter, boolean bDirty) {
 		if (filter != null) {
 			final OAGraphInternal og = (OAGraphInternal) OARuntime.graph(selectClass);
-			if (og.objectsInternal().callObjectCacheGetSelectAllHub(selectClass) != null) {
+			if (og.internal().objects().cache().getSelectAllHub(selectClass) != null) {
 				ObjectCacheIterator it = new ObjectCacheIterator(selectClass, filter);
 				it.setMax(max);
 				return it;
@@ -508,7 +508,7 @@ public class OADataSourceRestClient extends OADataSource {
 		OAObjectKey okx = objx.getObjectKey();
 
 		final OAGraphInternal og = (OAGraphInternal) OARuntime.graph(obj);
-    	OAObjectInfo oi = og.objectsInternal().callObjectInfoGetOAObjectInfo(obj.getClass());
+    	OAObjectInfo oi = og.internal().objects().info().getOAObjectInfo(obj.getClass());
 
 		Object[] ids = okx.getObjectIds();
 
@@ -690,7 +690,7 @@ public class OADataSourceRestClient extends OADataSource {
 			Object obj = null;
 			if (key != null) {
 				final OAGraphInternal og = (OAGraphInternal) OARuntime.graph(clazz);
-				obj = og.objectsInternal().callObjectCacheGet(clazz, key);
+				obj = og.internal().objects().cache().get(clazz, key);
 				if (obj == null) {
 					// not on this system, need to get from server
 					//qqqqqqq todo:
