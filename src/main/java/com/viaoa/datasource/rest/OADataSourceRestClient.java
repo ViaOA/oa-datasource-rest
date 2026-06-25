@@ -24,13 +24,13 @@ import com.viaoa.datasource.OADataSource;
 import com.viaoa.datasource.OADataSourceIterator;
 import com.viaoa.datasource.objectcache.ObjectCacheIterator;
 import com.viaoa.filter.OAFilter;
-import com.viaoa.graph.OAGraph;
-import com.viaoa.graph.service.object.OAObjectCacheService;
-import com.viaoa.graph.service.object.OAObjectInfoService;
-import com.viaoa.graph.sibling.OASiblingHelper;
 import com.viaoa.hub.Hub;
 import com.viaoa.json.OAJson;
 import com.viaoa.metadata.OAObjectInfo;
+import com.viaoa.oa.OA;
+import com.viaoa.oa.service.object.OAObjectCacheService;
+import com.viaoa.oa.service.object.OAObjectInfoService;
+import com.viaoa.oa.sibling.OASiblingHelper;
 import com.viaoa.object.OAObject;
 import com.viaoa.object.OAObjectKey;
 import com.viaoa.runtime.OARuntime;
@@ -216,7 +216,7 @@ public class OADataSourceRestClient extends OADataSource {
 		}
 
 		if (filter != null) {
-			final OAGraph og = OARuntime.graph(clazz);
+			final OA og = OARuntime.oa(clazz);
 			if (og.internal().objects().cache().getSelectAllHub(clazz) != null) {
 				return true;
 			}
@@ -423,7 +423,7 @@ public class OADataSourceRestClient extends OADataSource {
 			int max, OAFilter filter, boolean bDirty) {
 
 		if (filter != null) {
-			final OAGraph og = OARuntime.graph(selectClass);
+			final OA og = OARuntime.oa(selectClass);
 			if (og.internal().objects().cache().getSelectAllHub(selectClass) != null) {
 				ObjectCacheIterator it = new ObjectCacheIterator(selectClass, filter);
 				it.setMax(max);
@@ -464,7 +464,7 @@ public class OADataSourceRestClient extends OADataSource {
 			String queryWhere, String queryOrder,
 			int max, OAFilter filter, boolean bDirty) {
 		if (filter != null) {
-			final OAGraph og = OARuntime.graph(selectClass);
+			final OA og = OARuntime.oa(selectClass);
 			if (og.internal().objects().cache().getSelectAllHub(selectClass) != null) {
 				ObjectCacheIterator it = new ObjectCacheIterator(selectClass, filter);
 				it.setMax(max);
@@ -506,7 +506,7 @@ public class OADataSourceRestClient extends OADataSource {
 
 		OAObjectKey okx = objx.getObjectKey();
 
-		final OAGraph og = OARuntime.graph(obj);
+		final OA og = OARuntime.oa(obj);
     	OAObjectInfo oi = og.internal().objects().info().getOAObjectInfo(obj.getClass());
 
 		Object[] ids = okx.getObjectIds();
@@ -688,7 +688,7 @@ public class OADataSourceRestClient extends OADataSource {
 			}
 			Object obj = null;
 			if (key != null) {
-				final OAGraph og = OARuntime.graph(clazz);
+				final OA og = OARuntime.oa(clazz);
 				obj = og.internal().objects().cache().get(clazz, key);
 				if (obj == null) {
 					// not on this system, need to get from server

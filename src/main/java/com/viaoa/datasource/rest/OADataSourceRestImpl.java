@@ -23,9 +23,9 @@ import java.util.logging.Logger;
 
 import com.viaoa.datasource.OADataSource;
 import com.viaoa.datasource.OADataSourceIterator;
-import com.viaoa.graph.OAGraph;
-import com.viaoa.graph.service.object.OAObjectCacheService;
 import com.viaoa.json.OAJson;
+import com.viaoa.oa.OA;
+import com.viaoa.oa.service.object.OAObjectCacheService;
 import com.viaoa.object.OAObject;
 import com.viaoa.object.OAObjectKey;
 import com.viaoa.runtime.OARuntime;
@@ -344,7 +344,7 @@ public class OADataSourceRestImpl implements OADataSourceRestInterface {
 		if (whereObjectClass != null && whereKey != null) {
 			OAObjectKey ok = OAJson.convertJsonSinglePartIdToObjectKey(whereObjectClass, whereKey);
 
-			final OAGraph og = OARuntime.graph(whereObjectClass);
+			final OA og = OARuntime.oa(whereObjectClass);
 			
 			objWhere = (OAObject) og.internal().objects().cache().get(whereObjectClass, ok);
 			if (objWhere == null) {
