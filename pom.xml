@@ -53,7 +53,7 @@
   
     <dependency>
       <groupId>com.viaoa</groupId>
-      <artifactId>oa-remote-rest</artifactId>
+      <artifactId>oa-core</artifactId>
       <version>4.0.0</version>
     </dependency>
   
@@ -106,18 +106,17 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.1</version>
+        <version>3.14.1</version>
         <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-          <release>8</release>
+          <release>21</release>
+          <encoding>UTF-8</encoding>
         </configuration>
       </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.14.1</version>
+        <version>3.5.4</version>
         <configuration>
           <skipTests>true</skipTests>
         </configuration>
@@ -126,7 +125,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
-        <version>3.2.2</version>
+        <version>3.4.2</version>
         <configuration>
           <archive>
             <manifestFile>manifest.mf</manifestFile>
@@ -138,6 +137,7 @@
         </configuration>
       </plugin>
 
+<!-- qqqqqqqqqq temp turned off
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jarsigner-plugin</artifactId>
@@ -156,11 +156,12 @@
           <storepass>${keystore.store.password}</storepass>
         </configuration>
       </plugin>
+-->
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
-        <version>2.2.1</version>
+        <version>3.4.0</version>
         <executions>
           <execution>
             <id>attach-sources</id>
@@ -175,7 +176,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.1.0</version>
+        <version>3.12.0</version>
         <executions>
           <execution>
             <id>attach-javadocs</id>
@@ -202,10 +203,11 @@
 
 
       <!-- mavencentral deploy see oa-core pom.xml -->
+<!-- qqqqqqqqqq temp turned off      
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-gpg-plugin</artifactId>
-        <version>3.0.1</version>
+        <version>3.1.0</version>
         <executions>
           <execution>
             <id>sign-artifacts</id>
@@ -216,8 +218,9 @@
           </execution>
         </executions>
       </plugin>
-
+-->
       <!-- deploy on maven central, run mvn clean deploy -->
+<!-- qqqqqqqqqq temp turned off      
       <plugin>
         <groupId>org.sonatype.central</groupId>
         <artifactId>central-publishing-maven-plugin</artifactId>
@@ -228,7 +231,7 @@
           <autoPublish>true</autoPublish>
         </configuration>
       </plugin>
-
+-->
     </plugins>
   </build>
 </project>
